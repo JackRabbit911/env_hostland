@@ -1,2 +1,2 @@
 # env_hostland
-Docker containerize PHP/Apache/MySQL for hostland.ru
+Docker containerize PHP/Apache/MySQL for hostland ru
