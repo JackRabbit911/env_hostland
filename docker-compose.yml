@@ -1,0 +1,37 @@
+version: '3'
+
+networks:
+  backend:
+
+services:
+
+  httpd:
+    build:
+      context: php-7-workspace
+      dockerfile: Dockerfile
+    container_name: php73apache2
+    ports:
+      - 80:80
+    volumes:
+      - "./site.zone/htdocs/www:/var/www/html"
+    networks:
+      - backend
+
+  mysqlcker:
+    image: mysql:5.7
+    container_name: mysql
+    restart: unless-stopped
+    volumes:
+      - ./mysql-5.7/data:/var/lib/mysql
+      - ./mysql-5.7/conf.d:/etc/mysql/conf.d
+      - ./mysql-5.7/logs:/var/log/mysql/
+      - ./mysql-5.7/dump:/dump
+    ports:
+      - 3306:3306
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      TZ: "Europe/Moscow"
+    networks:
+      - backend
