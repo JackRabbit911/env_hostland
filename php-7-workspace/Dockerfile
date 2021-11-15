@@ -12,5 +12,6 @@ RUN docker-php-ext-install bz2
 RUN docker-php-ext-install calendar
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install gd
+RUN docker-php-ext-install gettext
 
 # RUN pecl install xdebug && docker-php-ext-enable xdebug
