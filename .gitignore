@@ -1,4 +1,4 @@
-/mysql-5.7/data/**
-!/mysql-5.7/data/.gitkeep
+/mysql/data/**
+!/mysql/data/.gitkeep
 # Файлы web-проектов
 /site.zone/**
