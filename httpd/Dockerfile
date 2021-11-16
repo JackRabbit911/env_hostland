@@ -47,6 +47,8 @@ RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 
+RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
+
 # ЗАСАДА!
 
 # Step 32/32 : RUN docker-php-ext-install xmlrpc
