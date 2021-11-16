@@ -10,6 +10,7 @@ RUN apt-get install -y libgmp-dev
 RUN apt-get install -y libtidy-dev
 RUN apt-get install -y libxslt-dev
 RUN apt-get install -y libzip-dev
+RUN apt-get install -y libicu-dev
 
 # RUN apt-get install -y libmcrypt-dev
 # RUN docker-php-ext-install mcrypt
@@ -42,6 +43,11 @@ RUN docker-php-ext-install tidy
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install wddx
 RUN docker-php-ext-install xmlrpc
+
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+
+RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 
 # ЗАСАДА!
 
