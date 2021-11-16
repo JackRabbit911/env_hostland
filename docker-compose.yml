@@ -7,9 +7,8 @@ services:
 
   httpd:
     build:
-      context: php-7-workspace
+      context: httpd
       dockerfile: Dockerfile
-    container_name: php73apache2
     ports:
       - 80:80
     volumes:
@@ -17,15 +16,14 @@ services:
     networks:
       - backend
 
-  mysqlcker:
+  mysql:
     image: mysql:5.7
-    container_name: mysql
     restart: unless-stopped
     volumes:
-      - ./mysql-5.7/data:/var/lib/mysql
-      - ./mysql-5.7/conf.d:/etc/mysql/conf.d
-      - ./mysql-5.7/logs:/var/log/mysql/
-      - ./mysql-5.7/dump:/dump
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/logs:/var/log/mysql/
+      - ./mysql/dump:/dump
     ports:
       - 3306:3306
     security_opt:
