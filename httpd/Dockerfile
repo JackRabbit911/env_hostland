@@ -12,17 +12,17 @@ RUN apt-get install -y libxslt-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install -y libicu-dev
 RUN apt-get install -y libmcrypt-dev
+RUN apt-get install -y libmemcached-dev zlib1g-dev
+RUN apt-get install -y libmagickwand-dev --no-install-recommends
+RUN apt-get install -y libxml2-dev && apt-get clean -y
 
+RUN docker-php-ext-install soap
+RUN pecl install memcached-3.1.4 && docker-php-ext-enable memcached
 RUN pecl install mcrypt-1.0.4 && docker-php-ext-enable mcrypt
 
-RUN apt-get install -y libmagickwand-dev --no-install-recommends && \
-    pecl install imagick && docker-php-ext-enable imagick && \
-    rm -rf /var/lib/apt/lists/*
+RUN pecl install imagick && docker-php-ext-enable imagick && rm -rf /var/lib/apt/lists/*
 
-# RUN apt-get install -y libmcrypt-dev
-# RUN docker-php-ext-install mcrypt
-
-RUN apt-get install -y libxml2-dev
+# RUN apt-get install -y libxml2-dev
 # RUN docker-php-ext-install soap
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
