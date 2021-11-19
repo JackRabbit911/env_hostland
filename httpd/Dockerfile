@@ -11,16 +11,18 @@ RUN apt-get install -y libtidy-dev
 RUN apt-get install -y libxslt-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install -y libicu-dev
+RUN apt-get install -y libmcrypt-dev
+RUN apt-get install -y libmemcached-dev zlib1g-dev
+RUN apt-get install -y libmagickwand-dev --no-install-recommends
+RUN apt-get install -y libxml2-dev && apt-get clean -y
 
-RUN apt-get install -y libmagickwand-dev --no-install-recommends && \
-    pecl install imagick && docker-php-ext-enable imagick && \
-    rm -rf /var/lib/apt/lists/*
+RUN pecl install -o -f redis &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis
 
-# RUN apt-get install -y libmcrypt-dev
-# RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install soap
+RUN pecl install memcached-3.1.4 && docker-php-ext-enable memcached
+RUN pecl install mcrypt-1.0.4 && docker-php-ext-enable mcrypt
 
-RUN apt-get install -y libxml2-dev
-# RUN docker-php-ext-install soap
+RUN pecl install imagick && docker-php-ext-enable imagick && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
@@ -47,9 +49,9 @@ RUN docker-php-ext-install tidy
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install wddx
 RUN docker-php-ext-install xmlrpc
-
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 
@@ -83,6 +85,3 @@ RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 # libxmlrpc/acinclude.m4:13: XMLRPC_HEADER_CHECKS is expanded from...
 # libxmlrpc/xmlrpc.m4:1: XMLRPC_CHECKS is expanded from...
 # config.m4:80: the top level
-
-
-# RUN pecl install xdebug && docker-php-ext-enable xdebug
