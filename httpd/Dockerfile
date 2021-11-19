@@ -12,6 +12,10 @@ RUN apt-get install -y libxslt-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install -y libicu-dev
 
+RUN apt-get install -y libmagickwand-dev --no-install-recommends && \
+    pecl install imagick && docker-php-ext-enable imagick && \
+    rm -rf /var/lib/apt/lists/*
+
 # RUN apt-get install -y libmcrypt-dev
 # RUN docker-php-ext-install mcrypt
 
