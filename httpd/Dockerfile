@@ -11,6 +11,9 @@ RUN apt-get install -y libtidy-dev
 RUN apt-get install -y libxslt-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install -y libicu-dev
+RUN apt-get install -y libmcrypt-dev
+
+RUN pecl install mcrypt-1.0.4 && docker-php-ext-enable mcrypt
 
 RUN apt-get install -y libmagickwand-dev --no-install-recommends && \
     pecl install imagick && docker-php-ext-enable imagick && \
