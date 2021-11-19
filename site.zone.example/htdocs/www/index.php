@@ -22,13 +22,13 @@ if(is_string($res))
 
         echo '<style>td {padding: 0 6px;} table {margin: auto;}</style>';
         echo '<table border="1">';
-        echo '<tr><th>№</th><th>Local</th><th>Remote</th></tr>';
+        echo '<tr class="h"><th>№</th><th>Local</th><th>Remote</th></tr>';
 
         foreach($exts AS $key => $ext)
         {
             $loc = (in_array($ext, $local_exts)) ? $ext : null;
             $remote = (in_array($ext, $remote_exts)) ? $ext : null;
-            echo '<tr><td>'.$key.'</td><td>'.$loc.'</td><td>'.$remote.'</td></tr>';
+            echo '<tr><td clss="e">'.$key.'</td><td>'.$loc.'</td><td>'.$remote.'</td></tr>';
         }
 
         echo '</table>';
