@@ -1,6 +1,5 @@
 <?php
 $url = 'http://wn.buri.me/test/api';
-// $url = 'http://wn.qwe/test/api';
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -19,9 +18,9 @@ if(is_string($res))
         $local_exts = get_loaded_extensions();
         sort($local_exts, SORT_NATURAL | SORT_FLAG_CASE);
 
-        $exts = array_replace($local_exts, $remote_exts);
+        $exts = array_unique(array_merge($local_exts, $remote_exts));
 
-        echo '<style>td {padding: 0 6px;}</style>';
+        echo '<style>td {padding: 0 6px;} table {margin: auto;}</style>';
         echo '<table border="1">';
         echo '<tr><th>№</th><th>Local</th><th>Remote</th></tr>';
 
@@ -36,3 +35,5 @@ if(is_string($res))
     }
 }
 else die('Что-то пошло не так...');
+echo '<hr>';
+phpinfo();
