@@ -52,6 +52,7 @@ RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN docker-php-ext-install -j$(nproc) opcache
 
 RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
