@@ -52,6 +52,8 @@ RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN pecl install mongodb
+RUN echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini
 
 RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
