@@ -52,6 +52,8 @@ RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN pecl install xdebug && docker-php-ext-enable xdebug
+COPY ioncube_loader_lin_7.3.so /usr/local/lib/php/extensions/no-debug-non-zts-20180731/ioncube_loader_lin_7.3.so
+COPY 00-ioncube.ini /usr/local/etc/php/conf.d/00-ioncube.ini
 
 RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
