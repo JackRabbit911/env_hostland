@@ -2,7 +2,7 @@ FROM php:7.3-apache
 
 RUN apt-get update
 
-RUN apt-get install -y libbz2-dev
+RUN apt-get install -y libbz2-dev mc
 RUN apt-get install -y libc-client-dev libkrb5-dev
 RUN apt-get install -y libldap2-dev
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
@@ -54,6 +54,7 @@ RUN docker-php-ext-install intl
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 COPY ioncube_loader_lin_7.3.so /usr/local/lib/php/extensions/no-debug-non-zts-20180731/ioncube_loader_lin_7.3.so
 COPY 00-ioncube.ini /usr/local/etc/php/conf.d/00-ioncube.ini
+
 RUN pecl install mongodb
 RUN echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini
 RUN docker-php-ext-install -j$(nproc) opcache
@@ -61,3 +62,8 @@ RUN echo 'ServerName localhost:80' >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+RUN mkdir -p /var/www/site.zone/htdocs/www
+COPY default.conf /etc/apache2/sites-available/000-default.conf
+
