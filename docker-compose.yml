@@ -11,9 +11,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - "./site.zone:/var"
-      - "./site.zone/htdocs:/var/www"
-      - "./site.zone/htdocs/www:/var/www/html"
+      - "./site.zone:/var/www/site.zone"
     networks:
       - backend
     depends_on:
