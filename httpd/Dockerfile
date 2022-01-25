@@ -64,6 +64,7 @@ RUN a2enmod rewrite
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-RUN mkdir -p /var/www/site.zone/htdocs/www
+RUN mkdir -p /var/www
+# /site.zone/htdocs/www
 COPY default.conf /etc/apache2/sites-available/000-default.conf
 
