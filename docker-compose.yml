@@ -34,3 +34,10 @@ services:
       TZ: "Europe/Moscow"
     networks:
       - backend
+
+  fakesmtp:
+    image: reachfive/fake-smtp-server
+    ports:
+      - 8080:1080
+    networks:
+      - backend
