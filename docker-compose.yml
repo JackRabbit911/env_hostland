@@ -36,8 +36,8 @@ services:
       - backend
 
   fakesmtp:
-    image: reachfive/fake-smtp-server
+    image: maildev/maildev
     ports:
-      - 8080:1080
+      - 1080:1080
     networks:
       - backend
