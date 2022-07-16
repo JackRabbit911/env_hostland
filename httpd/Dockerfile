@@ -5,7 +5,9 @@ RUN apt-get update
 RUN apt-get install -y libbz2-dev mc
 RUN apt-get install -y libc-client-dev libkrb5-dev
 RUN apt-get install -y libldap2-dev
-RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+# RUN apt-get install -y libfreetype6-dev
+RUN apt-get install -y libpng-dev
+RUN apt-get install -y libjpeg62-turbo-dev
 RUN apt-get install -y libgmp-dev
 RUN apt-get install -y libtidy-dev
 RUN apt-get install -y libxslt-dev
@@ -25,7 +27,9 @@ RUN pecl install memcached-3.1.4 && docker-php-ext-enable memcached
 RUN pecl install imagick && docker-php-ext-enable imagick && rm -rf /var/lib/apt/lists/*
 
 # RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install gd
+# RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-configure gd --with-jpeg
+RUN docker-php-ext-install -j$(nproc) gd
 
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 RUN docker-php-ext-install ldap
