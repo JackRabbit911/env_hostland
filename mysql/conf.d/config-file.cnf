@@ -8,3 +8,6 @@ sql_mode=""
 slow_query_log=0
 slow_query_log_file=/var/log/mysql/slow.log
 long_query_time=10
+
+character-set-server = utf8
+collation-server = utf8_unicode_ci
